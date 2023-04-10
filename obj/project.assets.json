@@ -3916,11 +3916,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\New frontier\\TransportSystem\\TransportSystem\\TransportSystem\\TransportSystem.csproj",
+      "projectUniqueName": "D:\\TransportSystem\\TransportSystem\\TransportSystem.csproj",
       "projectName": "TransportSystem",
-      "projectPath": "D:\\New frontier\\TransportSystem\\TransportSystem\\TransportSystem\\TransportSystem.csproj",
+      "projectPath": "D:\\TransportSystem\\TransportSystem\\TransportSystem.csproj",
       "packagesPath": "C:\\Users\\Andrew\\.nuget\\packages\\",
-      "outputPath": "D:\\New frontier\\TransportSystem\\TransportSystem\\TransportSystem\\obj\\",
+      "outputPath": "D:\\TransportSystem\\TransportSystem\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Andrew\\AppData\\Roaming\\NuGet\\NuGet.Config",
