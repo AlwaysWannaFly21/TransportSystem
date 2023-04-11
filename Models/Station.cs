@@ -13,5 +13,7 @@ public partial class Station
 
     public double Latitude { get; set; }
 
+    public virtual ICollection<RouteStation> RouteStations { get; } = new List<RouteStation>();
+
     public virtual ICollection<Timetable> Timetables { get; } = new List<Timetable>();
 }

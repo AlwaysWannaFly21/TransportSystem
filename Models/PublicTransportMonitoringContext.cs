@@ -21,6 +21,10 @@ public partial class PublicTransportMonitoringContext : DbContext
 
     public virtual DbSet<Role> Roles { get; set; }
 
+    public virtual DbSet<Route> Routes { get; set; }
+
+    public virtual DbSet<RouteStation> RouteStations { get; set; }
+
     public virtual DbSet<Sensor> Sensors { get; set; }
 
     public virtual DbSet<SensorInfo> SensorInfos { get; set; }
@@ -103,6 +107,43 @@ public partial class PublicTransportMonitoringContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("role_name");
+        });
+
+        modelBuilder.Entity<Route>(entity =>
+        {
+            entity.HasKey(e => e.RouteId).HasName("PK__route__28F706FEF3067B06");
+
+            entity.ToTable("route");
+
+            entity.Property(e => e.RouteId)
+                .ValueGeneratedNever()
+                .HasColumnName("route_id");
+            entity.Property(e => e.RouteName)
+                .HasMaxLength(40)
+                .HasColumnName("route_name");
+        });
+
+        modelBuilder.Entity<RouteStation>(entity =>
+        {
+            entity.HasKey(e => e.RouteStationId).HasName("PK__route_st__F8B46055CEAD0E73");
+
+            entity.ToTable("route_station");
+
+            entity.Property(e => e.RouteStationId)
+                .ValueGeneratedNever()
+                .HasColumnName("route_station_id");
+            entity.Property(e => e.RouteId).HasColumnName("route_id");
+            entity.Property(e => e.StationId).HasColumnName("station_id");
+
+            entity.HasOne(d => d.Route).WithMany(p => p.RouteStations)
+                .HasForeignKey(d => d.RouteId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__route_sta__route__3E1D39E1");
+
+            entity.HasOne(d => d.Station).WithMany(p => p.RouteStations)
+                .HasForeignKey(d => d.StationId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__route_sta__stati__3F115E1A");
         });
 
         modelBuilder.Entity<Sensor>(entity =>
@@ -240,11 +281,15 @@ public partial class PublicTransportMonitoringContext : DbContext
                 .HasColumnName("transport_unit_id");
             entity.Property(e => e.Capacity).HasColumnName("capacity");
             entity.Property(e => e.DriverId).HasColumnName("driver_id");
-            entity.Property(e => e.RouteNumber).HasColumnName("route_number");
+            entity.Property(e => e.RouteId).HasColumnName("route_id");
 
             entity.HasOne(d => d.Driver).WithMany(p => p.TransportUnits)
                 .HasForeignKey(d => d.DriverId)
                 .HasConstraintName("FK__buses__user_id__4F7CD00D");
+
+            entity.HasOne(d => d.Route).WithMany(p => p.TransportUnits)
+                .HasForeignKey(d => d.RouteId)
+                .HasConstraintName("FK__transport__route__4D5F7D71");
         });
 
         modelBuilder.Entity<User>(entity =>

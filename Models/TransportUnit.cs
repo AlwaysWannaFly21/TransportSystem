@@ -7,17 +7,19 @@ public partial class TransportUnit
 {
     public int TransportUnitId { get; set; }
 
-    public int? RouteNumber { get; set; }
-
     public int? Capacity { get; set; }
 
     public int? DriverId { get; set; }
+
+    public int? RouteId { get; set; }
 
     public virtual User? Driver { get; set; }
 
     public virtual ICollection<NfcTag> NfcTags { get; } = new List<NfcTag>();
 
     public virtual ICollection<RegistrationInfo> RegistrationInfos { get; } = new List<RegistrationInfo>();
+
+    public virtual Route? Route { get; set; }
 
     public virtual ICollection<Sensor> Sensors { get; } = new List<Sensor>();
 
