@@ -53,6 +53,8 @@ public partial class PublicTransportMonitoringContext : DbContext
 
             entity.ToTable("nfc_tag");
 
+            entity.HasIndex(e => e.TransportUnitId, "IX_nfc_tag_transport_unit_id");
+
             entity.Property(e => e.TagId)
                 .ValueGeneratedNever()
                 .HasColumnName("tag_id");
@@ -68,6 +70,10 @@ public partial class PublicTransportMonitoringContext : DbContext
             entity.HasKey(e => e.RegistrationInfoId).HasName("PK__registra__899C8A683E8B3806");
 
             entity.ToTable("registration_info");
+
+            entity.HasIndex(e => e.TransportUnitId, "IX_registration_info_transport_unit_id");
+
+            entity.HasIndex(e => e.UserId, "IX_registration_info_user_id");
 
             entity.Property(e => e.RegistrationInfoId)
                 .ValueGeneratedNever()
@@ -98,7 +104,9 @@ public partial class PublicTransportMonitoringContext : DbContext
 
             entity.ToTable("role");
 
-            entity.HasIndex(e => e.RoleName, "UQ__roles__783254B15D4C363F").IsUnique();
+            entity.HasIndex(e => e.RoleName, "UQ__roles__783254B15D4C363F")
+                .IsUnique()
+                .HasFilter("([role_name] IS NOT NULL)");
 
             entity.Property(e => e.RoleId)
                 .ValueGeneratedNever()
@@ -129,6 +137,10 @@ public partial class PublicTransportMonitoringContext : DbContext
 
             entity.ToTable("route_station");
 
+            entity.HasIndex(e => e.RouteId, "IX_route_station_route_id");
+
+            entity.HasIndex(e => e.StationId, "IX_route_station_station_id");
+
             entity.Property(e => e.RouteStationId)
                 .ValueGeneratedNever()
                 .HasColumnName("route_station_id");
@@ -152,6 +164,8 @@ public partial class PublicTransportMonitoringContext : DbContext
 
             entity.ToTable("sensor");
 
+            entity.HasIndex(e => e.TransportUnitId, "IX_sensor_transport_unit_id");
+
             entity.Property(e => e.SensorId)
                 .ValueGeneratedNever()
                 .HasColumnName("sensor_id");
@@ -167,6 +181,8 @@ public partial class PublicTransportMonitoringContext : DbContext
             entity.HasKey(e => e.Id).HasName("PK__sensor_i__3213E83FCDD8452F");
 
             entity.ToTable("sensor_info");
+
+            entity.HasIndex(e => e.IrTransmittersId, "IX_sensor_info_ir_transmitters_id");
 
             entity.Property(e => e.Id)
                 .ValueGeneratedNever()
@@ -204,6 +220,12 @@ public partial class PublicTransportMonitoringContext : DbContext
             entity.HasKey(e => e.TicketPurchaseId).HasName("PK__ticket_p__C23802A226ADD058");
 
             entity.ToTable("ticket_purchase");
+
+            entity.HasIndex(e => e.BusId, "IX_ticket_purchase_bus_id");
+
+            entity.HasIndex(e => e.TicketTypeId, "IX_ticket_purchase_ticket_type_id");
+
+            entity.HasIndex(e => e.UserId, "IX_ticket_purchase_user_id");
 
             entity.Property(e => e.TicketPurchaseId)
                 .ValueGeneratedNever()
@@ -252,6 +274,10 @@ public partial class PublicTransportMonitoringContext : DbContext
 
             entity.ToTable("timetable");
 
+            entity.HasIndex(e => e.StationId, "IX_timetable_station_id");
+
+            entity.HasIndex(e => e.TransportUnitId, "IX_timetable_transport_unit_id");
+
             entity.Property(e => e.TimetableId)
                 .ValueGeneratedNever()
                 .HasColumnName("timetable_id");
@@ -276,6 +302,10 @@ public partial class PublicTransportMonitoringContext : DbContext
 
             entity.ToTable("transport_unit");
 
+            entity.HasIndex(e => e.DriverId, "IX_transport_unit_driver_id");
+
+            entity.HasIndex(e => e.RouteId, "IX_transport_unit_route_id");
+
             entity.Property(e => e.TransportUnitId)
                 .ValueGeneratedNever()
                 .HasColumnName("transport_unit_id");
@@ -298,15 +328,15 @@ public partial class PublicTransportMonitoringContext : DbContext
 
             entity.ToTable("user");
 
-            entity.HasIndex(e => e.Username, "UQ__users__F3DBC5725D4A6B6A").IsUnique();
+            entity.HasIndex(e => e.RoleId, "IX_user_role_id");
 
-            entity.Property(e => e.UserId)
-                .ValueGeneratedNever()
-                .HasColumnName("user_id");
-            entity.Property(e => e.Password)
-                .HasMaxLength(255)
-                .IsUnicode(false)
-                .HasColumnName("password");
+            entity.HasIndex(e => e.Username, "UQ__users__F3DBC5725D4A6B6A")
+                .IsUnique()
+                .HasFilter("([username] IS NOT NULL)");
+
+            entity.Property(e => e.UserId).HasColumnName("user_id");
+            entity.Property(e => e.PasswordHash).HasColumnName("password_hash");
+            entity.Property(e => e.PasswordSalt).HasColumnName("password_salt");
             entity.Property(e => e.RoleId).HasColumnName("role_id");
             entity.Property(e => e.Username)
                 .HasMaxLength(255)
