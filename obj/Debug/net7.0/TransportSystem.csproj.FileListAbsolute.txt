@@ -150,3 +150,10 @@ D:\TransportSystem\TransportSystem\obj\Debug\net7.0\refint\TransportSystem.dll
 D:\TransportSystem\TransportSystem\obj\Debug\net7.0\TransportSystem.pdb
 D:\TransportSystem\TransportSystem\obj\Debug\net7.0\TransportSystem.genruntimeconfig.cache
 D:\TransportSystem\TransportSystem\obj\Debug\net7.0\ref\TransportSystem.dll
+D:\TransportSystem\TransportSystem\bin\Debug\net7.0\CryptSharp.Core.dll
+D:\TransportSystem\TransportSystem\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\TransportSystem\TransportSystem\bin\Debug\net7.0\Scrutor.dll
+D:\TransportSystem\TransportSystem\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.dll
+D:\TransportSystem\TransportSystem\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
+D:\TransportSystem\TransportSystem\bin\Debug\net7.0\AutoMapper.dll
+D:\TransportSystem\TransportSystem\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
