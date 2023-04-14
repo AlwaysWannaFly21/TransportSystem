@@ -6,6 +6,9 @@ using TransportSystem.Repository;
 using Swashbuckle.AspNetCore.Filters;
 using Microsoft.EntityFrameworkCore;
 using TransportSystem.Models;
+using TransportSystem.Services.StationService;
+using TransportSystem.Configurations;
+using TransportSystem.Services.RideRegisterService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +18,7 @@ builder.Services.AddDbContext<PublicTransportMonitoringContext>(options =>
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddAutoMapper(typeof(MapperConfig));
 builder.Services.AddSwaggerGen(c =>
 {
     c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
@@ -28,6 +32,8 @@ builder.Services.AddSwaggerGen(c =>
     c.OperationFilter<SecurityRequirementsOperationFilter>();
 });
 builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
+builder.Services.AddScoped<IStationService, StationService>();
+builder.Services.AddScoped<IRideRegisterService, RideRegisterService>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {

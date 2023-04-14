@@ -55,9 +55,7 @@ public partial class PublicTransportMonitoringContext : DbContext
 
             entity.HasIndex(e => e.TransportUnitId, "IX_nfc_tag_transport_unit_id");
 
-            entity.Property(e => e.TagId)
-                .ValueGeneratedNever()
-                .HasColumnName("tag_id");
+            entity.Property(e => e.TagId).HasColumnName("tag_id");
             entity.Property(e => e.TransportUnitId).HasColumnName("transport_unit_id");
 
             entity.HasOne(d => d.TransportUnit).WithMany(p => p.NfcTags)
@@ -75,9 +73,7 @@ public partial class PublicTransportMonitoringContext : DbContext
 
             entity.HasIndex(e => e.UserId, "IX_registration_info_user_id");
 
-            entity.Property(e => e.RegistrationInfoId)
-                .ValueGeneratedNever()
-                .HasColumnName("registration_info_id");
+            entity.Property(e => e.RegistrationInfoId).HasColumnName("registration_info_id");
             entity.Property(e => e.ExpiryDate)
                 .HasColumnType("datetime")
                 .HasColumnName("expiry_date");
@@ -108,9 +104,7 @@ public partial class PublicTransportMonitoringContext : DbContext
                 .IsUnique()
                 .HasFilter("([role_name] IS NOT NULL)");
 
-            entity.Property(e => e.RoleId)
-                .ValueGeneratedNever()
-                .HasColumnName("role_id");
+            entity.Property(e => e.RoleId).HasColumnName("role_id");
             entity.Property(e => e.RoleName)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -123,9 +117,7 @@ public partial class PublicTransportMonitoringContext : DbContext
 
             entity.ToTable("route");
 
-            entity.Property(e => e.RouteId)
-                .ValueGeneratedNever()
-                .HasColumnName("route_id");
+            entity.Property(e => e.RouteId).HasColumnName("route_id");
             entity.Property(e => e.RouteName)
                 .HasMaxLength(40)
                 .HasColumnName("route_name");
@@ -141,9 +133,7 @@ public partial class PublicTransportMonitoringContext : DbContext
 
             entity.HasIndex(e => e.StationId, "IX_route_station_station_id");
 
-            entity.Property(e => e.RouteStationId)
-                .ValueGeneratedNever()
-                .HasColumnName("route_station_id");
+            entity.Property(e => e.RouteStationId).HasColumnName("route_station_id");
             entity.Property(e => e.RouteId).HasColumnName("route_id");
             entity.Property(e => e.StationId).HasColumnName("station_id");
 
@@ -166,9 +156,7 @@ public partial class PublicTransportMonitoringContext : DbContext
 
             entity.HasIndex(e => e.TransportUnitId, "IX_sensor_transport_unit_id");
 
-            entity.Property(e => e.SensorId)
-                .ValueGeneratedNever()
-                .HasColumnName("sensor_id");
+            entity.Property(e => e.SensorId).HasColumnName("sensor_id");
             entity.Property(e => e.TransportUnitId).HasColumnName("transport_unit_id");
 
             entity.HasOne(d => d.TransportUnit).WithMany(p => p.Sensors)
@@ -184,9 +172,7 @@ public partial class PublicTransportMonitoringContext : DbContext
 
             entity.HasIndex(e => e.IrTransmittersId, "IX_sensor_info_ir_transmitters_id");
 
-            entity.Property(e => e.Id)
-                .ValueGeneratedNever()
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.IrTransmittersId).HasColumnName("ir_transmitters_id");
             entity.Property(e => e.PassengerCount).HasColumnName("passenger_count");
             entity.Property(e => e.ReadingTime)
@@ -204,9 +190,7 @@ public partial class PublicTransportMonitoringContext : DbContext
 
             entity.ToTable("station");
 
-            entity.Property(e => e.StationId)
-                .ValueGeneratedNever()
-                .HasColumnName("station_id");
+            entity.Property(e => e.StationId).HasColumnName("station_id");
             entity.Property(e => e.Latitude).HasColumnName("latitude");
             entity.Property(e => e.Longitude).HasColumnName("longitude");
             entity.Property(e => e.StationName)
@@ -227,9 +211,7 @@ public partial class PublicTransportMonitoringContext : DbContext
 
             entity.HasIndex(e => e.UserId, "IX_ticket_purchase_user_id");
 
-            entity.Property(e => e.TicketPurchaseId)
-                .ValueGeneratedNever()
-                .HasColumnName("ticket_purchase_id");
+            entity.Property(e => e.TicketPurchaseId).HasColumnName("ticket_purchase_id");
             entity.Property(e => e.BusId).HasColumnName("bus_id");
             entity.Property(e => e.PurchaseTime)
                 .HasColumnType("datetime")
@@ -256,9 +238,7 @@ public partial class PublicTransportMonitoringContext : DbContext
 
             entity.ToTable("ticket_type");
 
-            entity.Property(e => e.TicketTypeId)
-                .ValueGeneratedNever()
-                .HasColumnName("ticket_type_id");
+            entity.Property(e => e.TicketTypeId).HasColumnName("ticket_type_id");
             entity.Property(e => e.TicketPrice)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("ticket_price");
@@ -278,9 +258,7 @@ public partial class PublicTransportMonitoringContext : DbContext
 
             entity.HasIndex(e => e.TransportUnitId, "IX_timetable_transport_unit_id");
 
-            entity.Property(e => e.TimetableId)
-                .ValueGeneratedNever()
-                .HasColumnName("timetable_id");
+            entity.Property(e => e.TimetableId).HasColumnName("timetable_id");
             entity.Property(e => e.ArrivalTime).HasColumnName("arrival_time");
             entity.Property(e => e.StationId).HasColumnName("station_id");
             entity.Property(e => e.TransportUnitId).HasColumnName("transport_unit_id");
@@ -306,9 +284,7 @@ public partial class PublicTransportMonitoringContext : DbContext
 
             entity.HasIndex(e => e.RouteId, "IX_transport_unit_route_id");
 
-            entity.Property(e => e.TransportUnitId)
-                .ValueGeneratedNever()
-                .HasColumnName("transport_unit_id");
+            entity.Property(e => e.TransportUnitId).HasColumnName("transport_unit_id");
             entity.Property(e => e.Capacity).HasColumnName("capacity");
             entity.Property(e => e.DriverId).HasColumnName("driver_id");
             entity.Property(e => e.RouteId).HasColumnName("route_id");
