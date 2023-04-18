@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using TransportSystem.Models;
 using TransportSystem.Services.StationService;
 using TransportSystem.Configurations;
+using TransportSystem.Services.RideHistoryService;
 using TransportSystem.Services.RideRegisterService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,6 +35,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
 builder.Services.AddScoped<IStationService, StationService>();
 builder.Services.AddScoped<IRideRegisterService, RideRegisterService>();
+builder.Services.AddScoped<IRideHistoryService, RideHistoryService>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
