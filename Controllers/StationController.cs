@@ -29,5 +29,12 @@ namespace TransportSystem.Controllers
             var response = await _stationService.GetStationSchedule(stationId);
             return Ok(response);
         }
+
+        [HttpGet("nearest_arrival")]
+        public async Task<ActionResult<ServiceResponse<List<Timetable>>>> GetNearestArrivals(int stationId)
+        {
+            var response = await _stationService.GetNearestArrivals(stationId);
+            return Ok(response);
+        }
     }
 }
