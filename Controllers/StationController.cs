@@ -16,10 +16,17 @@ namespace TransportSystem.Controllers
             _stationService = stationService;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<ServiceResponse<List<Timetable>>>> GetTimetable(int stationId, int transportId)
+        [HttpGet("station-transport")]
+        public async Task<ActionResult<ServiceResponse<List<Timetable>>>> GetStationTransportTimetable(int stationId, int transportId)
         {
             var response = await _stationService.GetStationTransportSchedule(stationId, transportId);
+            return Ok(response);
+        }
+
+        [HttpGet("station")]
+        public async Task<ActionResult<ServiceResponse<List<Timetable>>>> GetStationTimetable(int stationId)
+        {
+            var response = await _stationService.GetStationSchedule(stationId);
             return Ok(response);
         }
     }
