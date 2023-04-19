@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Navbar from './pages/Navbar';
+import Navbar from './components/Navbar';
+import RideHistory from './pages/RideHistory'
 
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
      <BrowserRouter>
             <Routes>
                 {/* <Route exact path="/WelcomePage" element={<WelcomePage />} /> */}
+                <Route exact path="/RideHistory" element={<RideHistory />} />
             </Routes>
         </BrowserRouter>
     </>

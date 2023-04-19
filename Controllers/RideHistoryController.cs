@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using TransportSystem.DTOs;
 using TransportSystem.Models;
 using TransportSystem.Services.RideHistoryService;
+using Microsoft.AspNetCore.Cors;
 
 namespace TransportSystem.Controllers
 {

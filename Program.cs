@@ -10,6 +10,7 @@ using TransportSystem.Services.StationService;
 using TransportSystem.Configurations;
 using TransportSystem.Services.RideHistoryService;
 using TransportSystem.Services.RideRegisterService;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,13 +26,13 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins(builder.Configuration.GetConnectionString("CORS:Host")!)
-        .AllowAnyHeader()
-        .AllowAnyMethod()
-        .AllowCredentials();
+        policy.WithOrigins("http://localhost:3000")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
     });
 });
-
+ 
 builder.Services.AddSwaggerGen(c =>
 {
     c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
@@ -70,10 +71,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
+//app.UseHttpsRedirection();
+app.UseRouting();
+app.UseCors();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
