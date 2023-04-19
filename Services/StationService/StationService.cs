@@ -62,7 +62,7 @@ namespace TransportSystem.Services.StationService
                 .Where(t => 
                         t.StationId == stationId 
                             && t.ArrivalTime > timeNow
-                                //Here is the comparison of current time and arrival time. 60 stands for minutes (1 hour) 
+                                //The function stands for the comparison of current time and arrival time. 60 stands for minutes (1 hour) 
                                 && EF.Functions.DateDiffMinute(timeNow, t.ArrivalTime) < 60)  
                 .OrderBy(x => x.ArrivalTime)
                 .Select(dto => new StationTimetableDto()
@@ -78,7 +78,7 @@ namespace TransportSystem.Services.StationService
             }
 
             response.Success = false;
-            response.Message = "Oops, no arrivals in one hour...";
+            response.Message = "Oops, no arrivals in an hour...";
             return response;
         }
     }
