@@ -2,16 +2,12 @@ import { React, useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import endpointService from '../../utilities/services/endpointService';
 
-function createData(time, unitNumber, roadName) {
-  return { time, unitNumber, roadName };
-}
-
-function RideHistory() {
+function StationTimetable() {
   
     const [rideHistoryList, setRideHistoryList] = useState();
 
     const fetchHistory = async () => {
-        const history = await endpointService.stationTimetableGET();
+        const history = await endpointService.stationTimetableGET(1);
         console.log(history)
         setRideHistoryList(history);
     }
@@ -45,4 +41,4 @@ function RideHistory() {
   );
 }
 
-export default RideHistory;
+//export default StationTimetable;

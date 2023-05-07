@@ -40,5 +40,16 @@ namespace TransportSystem.Services.RideRegisterService
 
             return response;
         }
+
+        public async Task<ServiceResponse<bool>> CheckRegisterValid(int transportUnitId, int userId)
+        {
+            var response = new ServiceResponse<bool>();
+
+            var isValid = _context.RegistrationInfos.Any(x =>
+                x.UserId == userId && x.TransportUnitId == transportUnitId && x.ExpiryDate > DateTime.Now);
+
+            response.Data = isValid;
+            return response;
+        }
     }
 }

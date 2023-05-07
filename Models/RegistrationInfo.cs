@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TransportSystem.Models;
 
-public partial class RegistrationInfo
+public class RegistrationInfo
 {
     public int RegistrationInfoId { get; set; }
 
