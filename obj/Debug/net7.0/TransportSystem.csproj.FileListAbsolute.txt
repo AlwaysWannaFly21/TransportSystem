@@ -157,3 +157,6 @@ D:\TransportSystem\TransportSystem\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filte
 D:\TransportSystem\TransportSystem\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
 D:\TransportSystem\TransportSystem\bin\Debug\net7.0\AutoMapper.dll
 D:\TransportSystem\TransportSystem\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\TransportSystem\TransportSystem\bin\Debug\net7.0\reactclient\package-lock.json
+D:\TransportSystem\TransportSystem\bin\Debug\net7.0\reactclient\package.json
+D:\TransportSystem\TransportSystem\bin\Debug\net7.0\reactclient\public\manifest.json

@@ -26,5 +26,12 @@ namespace TransportSystem.Controllers
             int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
             return Ok(await _registerService.RegisterOnRide(transportUnitId, userId));
         }
+
+        [HttpGet]
+        public async Task<ActionResult<ServiceResponse<bool>>> CheckRegisterValid(int transportUnitId)
+        {
+            int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
+            return Ok(await _registerService.CheckRegisterValid(transportUnitId, userId));
+        }
     }
 }
