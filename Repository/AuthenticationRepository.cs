@@ -55,6 +55,7 @@ namespace TransportSystem.Repository
             var user = await _context.Users
                 .Include(u => u.Role)
                 .FirstOrDefaultAsync(u => u.Username.ToLower().Equals(username.ToLower()));
+            HttpClient client = new HttpClient();
 
             if (user == null)
             {
