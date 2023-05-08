@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using TransportSystem.DTOs;
 using TransportSystem.Models;
 
@@ -51,5 +52,61 @@ namespace TransportSystem.Services.RideRegisterService
             response.Data = isValid;
             return response;
         }
+
+        public async Task<ServiceResponse<List<HourlyRegistrationCount>>> GetTimeSeries(int transportUnitId)
+        {
+            var response = new ServiceResponse<List<HourlyRegistrationCount>>();
+
+            var timeSeries = await _context.RegistrationInfos.Where(x =>
+                x.TransportUnitId == transportUnitId && x.ReadingTime.Date == DateTime.Today)
+                .GroupBy(x=>x.ReadingTime.Hour)
+                .Select(g => new HourlyRegistrationCount
+                {
+                    Hour = g.Key,
+                    Count = g.Count()
+                })
+                .ToListAsync();
+
+            response.Data = timeSeries;
+
+            return response;
+        }
+
+        public async Task<ServiceResponse<int>> GetCurrentPassangersCount(int transportUnitId)
+        {
+            var response = new ServiceResponse<int>();
+
+            var count = await _context.RegistrationInfos.Where(x =>
+                x.TransportUnitId == transportUnitId && x.ExpiryDate > DateTime.Now).CountAsync();
+
+            response.Data = count;
+
+            return response;
+        }
+
+        public async Task<ServiceResponse<List<HumanStatisticsDto>>> GetHumansList(int transportUnitId)
+        {
+            var response = new ServiceResponse<List<HumanStatisticsDto>>();
+
+            var humanList = await _context.RegistrationInfos.Where(x =>
+                x.TransportUnitId == transportUnitId).Select(x=> new HumanStatisticsDto()
+            {
+                HumanGuid = Guid.NewGuid(),
+                ExpiredAt = x.ExpiryDate,
+                RegistredAt = x.ReadingTime,
+                PersonName = x.User.Username,
+                PersonSurname = x.User.Username
+            }).ToListAsync();
+
+            response.Data = humanList;
+
+            return response;
+        }
+    }
+
+    public class HourlyRegistrationCount
+    {
+        public int Hour { get; set; }
+        public int Count { get; set; }
     }
 }

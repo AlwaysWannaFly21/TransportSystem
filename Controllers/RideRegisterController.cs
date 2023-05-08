@@ -33,5 +33,26 @@ namespace TransportSystem.Controllers
             int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
             return Ok(await _registerService.CheckRegisterValid(transportUnitId, userId));
         }
+
+        [HttpGet("GetTimeSeries")]
+        public async Task<ActionResult<ServiceResponse<List<RegistrationInfo>>>> GetTimeSeries(int transportUnitId)
+        {
+            var timeSeries = await _registerService.GetTimeSeries(transportUnitId);
+            return Ok(timeSeries);
+        }
+
+        [HttpGet("GetPassengersCount")]
+        public async Task<ActionResult<ServiceResponse<int>>> GetPessangersCount(int transportUnitId)
+        {
+            var count = await _registerService.GetCurrentPassangersCount(transportUnitId);
+            return Ok(count);
+        }
+
+        [HttpGet("GetHumanList")]
+        public async Task<ActionResult<ServiceResponse<int>>> GetHumanList(int transportUnitId)
+        {
+            var humanList = await _registerService.GetHumansList(transportUnitId);
+            return Ok(humanList);
+        }
     }
 }

@@ -100,7 +100,6 @@ export default function SignUp() {
                   autoComplete="new-password"
                 />
               </Grid>
-              
             </Grid>
             <Button
               type="submit"
