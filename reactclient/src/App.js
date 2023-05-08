@@ -6,7 +6,7 @@ import WelcomePage from './pages/WelcomePage'
 import UserTicketHistory from './pages/UserTicketHistory';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-
+import AnalyticsPage from './pages/AnalyticsPage'
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
                 <Route path="/UserTicketHistory" element={<UserTicketHistory />} /> 
                 <Route path="/SignIn" element={<SignIn />} /> 
                 <Route path="/SignUp" element={<SignUp />} /> 
+                <Route path="/Analytics" element={<AnalyticsPage />} /> 
             </Routes>
         </BrowserRouter>
     </>
