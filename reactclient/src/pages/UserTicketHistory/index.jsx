@@ -1,45 +1,45 @@
 import { React, useCallback, useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import endpointService from '../../utilities/services/endpointService';
+import Ticket from '../../components/Ticket';
+import { Box } from '@mui/material';
 
 function UserTicketHistory() {
   
     const [ticketHistoryList, setTicketHistoryList] = useState([]);
 
     
-    const fetchHistory = useCallback( async () => {
+    const fetchHistory = async () => {
         const historyList = await endpointService.userTicketHistoryGET();
-        console.log(historyList)
+        console.log("From UserTicketHistory: ", historyList)
         setTicketHistoryList(historyList.data);
-    },[])
+    }
+
+    function normalizeDateTime(dateTimeString) {
+        const dateObj = new Date(dateTimeString);
+        const day = dateObj.getDate().toString().padStart(2, '0');
+        const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+        const year = dateObj.getFullYear().toString();
+        const hours = dateObj.getHours().toString().padStart(2, '0');
+        const minutes = dateObj.getMinutes().toString().padStart(2, '0');
+        return `${day}.${month}.${year} ${hours}:${minutes}`;
+      }
 
     useEffect(() => {
         fetchHistory();
     }, []);
 
-  return (
-    ticketHistoryList.length && 
-    <TableContainer component={Paper}>
-      <Table aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="center">Time</TableCell>
-            <TableCell align="center">Unit Number</TableCell>
-            <TableCell align="center">Road Name</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {ticketHistoryList.map((row) => (
-            <TableRow key={row.unitNumber}>
-              <TableCell align="center">{row.time}</TableCell>
-              <TableCell align="center">{row.unitNumber}</TableCell>
-              <TableCell align="center">{row.roadName}</TableCell>
-            </TableRow>
+    return (
+        <Box sx={{ display: 'grid', gap: '20px', gridTemplateColumns: {lg: 'repeat(5, auto)', md: 'repeat(4, auto)', sm: 'repeat(3, auto)', xs: 'repeat(2, auto)'}, justifyItems: 'center', width:'fit-content', margin: '25px auto'}}>
+          {ticketHistoryList.map((list) => (
+            <Ticket 
+              roadName={list.routeName}
+              number={list.transportUnitId}
+              date={ normalizeDateTime(list.readingTime)}
+            />
           ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
+        </Box>
+      );
 }
 
 export default UserTicketHistory;

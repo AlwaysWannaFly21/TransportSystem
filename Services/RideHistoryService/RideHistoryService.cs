@@ -23,7 +23,7 @@ namespace TransportSystem.Services.RideHistoryService
                 {
                     ReadingTime = dto.ReadingTime,
                     RouteName = dto.TransportUnit.Route.RouteName,
-                    TransportUnitId = dto.TransportUnitId
+                    TransportUnitId = dto.TransportUnitId,
                 })
                 .ToListAsync();
 
