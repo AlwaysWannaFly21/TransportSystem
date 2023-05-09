@@ -44,7 +44,7 @@ console.log(realData);
                 ...theme.typography.body1,
               }}
             >
-              Sales ($)
+              People
             </Label>
           </YAxis>
           <Line

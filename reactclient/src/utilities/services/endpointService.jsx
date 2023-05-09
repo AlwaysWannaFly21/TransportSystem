@@ -17,6 +17,21 @@ const endpointService = {
             console.log(resp)
         return resp;
     },
+    rideRegisterPOST: async (transportUnitId) => {
+        let resp;
+        await fetch(BackConstants.API_URL_RIDE_REGISTER + `?transportUnitId=${transportUnitId}`, {
+            method: 'POST',
+            mode: 'cors',
+            credentials: 'include',
+            headers: {
+                'Authorization': `bearer ${getCookie('jwtToken')}`                
+            }
+        })
+            .then((response) => (response = response.json()))
+            .then((response) => (resp = response));
+            console.log(resp)
+        return resp;
+    },
     userTicketHistoryGET: async () => {
         let resp;
         await fetch(BackConstants.API_URL_RIDE_HISTORY, {

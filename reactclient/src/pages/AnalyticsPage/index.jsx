@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import { useSearchParams } from 'react-router-dom'
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
@@ -79,10 +80,11 @@ function DashboardContent() {
   const [currentPassangersCount, setCurrentPassangersCount] = useState();
   const [timeSeries, setTimeSeries] = useState([]);
   const [humanList, setHumanList] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams()
 
     const fetchPassangers = async () => {
         try {
-            const currentPassangersCount = await endpointService.passangersCountGET(1);
+            const currentPassangersCount = await endpointService.passangersCountGET(searchParams.get('unitId'));
             console.log("Current Passangers: ", currentPassangersCount)
             return currentPassangersCount
         } catch (error) {
@@ -91,13 +93,13 @@ function DashboardContent() {
     }
 
     const fetchTimeSeries = async () => {
-        const timeSeries = await endpointService.timeSeriesGET(1);
+        const timeSeries = await endpointService.timeSeriesGET(searchParams.get('unitId'));
         console.log("Time series: ", timeSeries)
         return timeSeries
     }
 
     const fetchHumanList = async () => {
-        const humanList = await endpointService.humanListGET(1);
+        const humanList = await endpointService.humanListGET(searchParams.get('unitId'));
         return humanList
     }
 
@@ -120,7 +122,7 @@ function DashboardContent() {
     }, [humanList, currentPassangersCount, timeSeries]);
 
   return (
-    currentPassangersCount && timeSeries && humanList &&
+    
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />

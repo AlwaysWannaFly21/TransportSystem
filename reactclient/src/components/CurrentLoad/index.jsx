@@ -19,11 +19,6 @@ export default function CurrentLoad({count}) {
       <Typography variant="h5" color="text.secondary" sx={{ flex: 1 }}>
         <CurrentTime/>
       </Typography>
-      <div>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          View balance
-        </Link>
-      </div>
     </React.Fragment>
   );
 }

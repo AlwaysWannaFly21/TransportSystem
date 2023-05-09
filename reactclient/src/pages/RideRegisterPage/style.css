@@ -1,0 +1,47 @@
+welcomeButton{
+    cursor: pointer;
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    background: linear-gradient(45deg, #17D1E6, #269FFC, #17D1E6);
+    background-size: 400%;
+    border-radius: 30px;
+    transform: translate(0%, -50%);
+  }
+  welcomeButton:hover{
+    animation: animate 8s linear infinite;
+  }
+  @keyframes animate{
+    0% {
+      background-position: 0%;
+    }
+    100% {
+      background-position: 500%;
+    }
+  }
+  welcomeButton:before{
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: -1;
+    background: linear-gradient(45deg, #17D1E6, #269FFC, #17D1E6);
+    background-size: 400%;
+    border-radius: 40px;
+    opacity: 0;
+    transition: 0.5s;
+  }
+  welcomeButton:hover:before{
+    filter: blur(20px);
+    opacity: 1;
+    animation: animate 8s linear infinite;
+  }
+  

@@ -7,6 +7,7 @@ import UserTicketHistory from './pages/UserTicketHistory';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import AnalyticsPage from './pages/AnalyticsPage'
+import RideRegisterPage from './pages/RideRegisterPage';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/SignIn" element={<SignIn />} /> 
                 <Route path="/SignUp" element={<SignUp />} /> 
                 <Route path="/Analytics" element={<AnalyticsPage />} /> 
+                <Route path="/RideRegister" element={<RideRegisterPage />} /> 
             </Routes>
         </BrowserRouter>
     </>

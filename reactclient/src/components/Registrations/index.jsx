@@ -40,7 +40,7 @@ export default function Registrations({humanList}) {
         <TableBody>
           {humanList.map((row) => (
             <TableRow key={row.humanGuid}>
-                {Object.values(row).map((cell)=><TableCell >{cell}</TableCell>)}
+                {Object.values({...row, registredAt:normalizeDateTime(row.registredAt), expiredAt:normalizeDateTime(row.expiredAt)}).map((cell)=><TableCell>{cell}</TableCell>)}
             </TableRow>
           ))}
         </TableBody>
