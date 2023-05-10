@@ -9,7 +9,6 @@ using TransportSystem.Services.RideRegisterService;
 
 namespace TransportSystem.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class RideRegisterController : ControllerBase
@@ -24,6 +23,12 @@ namespace TransportSystem.Controllers
         public async Task<ActionResult<ServiceResponse<RideRegisterDto>>> RegisterRide(int transportUnitId)
         {
             int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
+            return Ok(await _registerService.RegisterOnRide(transportUnitId, userId));
+        }
+
+        [HttpPost("RideNfc")]
+        public async Task<ActionResult<ServiceResponse<RideRegisterDto>>> RegisterRideNFC(int transportUnitId, int userId)
+        { ;
             return Ok(await _registerService.RegisterOnRide(transportUnitId, userId));
         }
 

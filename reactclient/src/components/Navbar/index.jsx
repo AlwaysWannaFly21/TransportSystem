@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CommuteIcon from '@mui/icons-material/Commute';
 
-const pages = ['Timetable', 'Pricing', 'Blog'];
+const pages = ['Timetable', 'Pricing'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {

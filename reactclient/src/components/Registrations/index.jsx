@@ -26,7 +26,7 @@ export default function Registrations({humanList}) {
 
   return (
     <React.Fragment>
-      <Title>Recent Orders</Title>
+      <Title>User History</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
