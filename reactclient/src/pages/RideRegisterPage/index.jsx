@@ -29,7 +29,7 @@ function RideRegisterPage() {
                     color: 'white',
                 }}
             >
-                LMS
+                ITransport - {searchParams.get('unitId')}
             </Typography>
             <Typography
                 onClick={handleClick}

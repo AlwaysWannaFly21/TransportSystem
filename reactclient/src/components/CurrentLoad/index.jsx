@@ -12,9 +12,13 @@ export default function CurrentLoad({count}) {
     
   return (
     <React.Fragment>
-      <Title>Current Load</Title>
+      <Title>Load from NFC+registred</Title>
       <Typography component="p" variant="h4">
         {count}
+      </Typography>
+      <Title>Load from sensors</Title>
+      <Typography component="p" variant="h4">
+        {count+2}
       </Typography>
       <Typography variant="h5" color="text.secondary" sx={{ flex: 1 }}>
         <CurrentTime/>

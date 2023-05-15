@@ -10,6 +10,7 @@ using TransportSystem.Services.RideRegisterService;
 namespace TransportSystem.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class RideRegisterController : ControllerBase
     {

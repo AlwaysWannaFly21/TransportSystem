@@ -89,7 +89,9 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography onClick={
+                    () => window.location.href = `http://localhost:3000/StationTimetable`
+                  } textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>

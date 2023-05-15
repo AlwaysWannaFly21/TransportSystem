@@ -27,8 +27,7 @@ export default function SignUp() {
     e.preventDefault()
     const resp = await endpointService.registerUser(userName,password)
     if(resp.ok)
-    {
-      
+    {      
       navigate("/SignIn")
     }
   };
@@ -89,8 +88,8 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
+                <Link href="#" onClick={()=>navigate("/SignIn")} variant="body2">
+                  {"Already have an account? Sign in"}
                 </Link>
               </Grid>
             </Grid>

@@ -15,7 +15,7 @@ function App() {
      <Navbar/>
      <BrowserRouter>
             <Routes>
-                <Route path="/WelcomePage" element={<WelcomePage />} /> 
+                <Route path="/" element={<WelcomePage />} /> 
                 <Route path="/RideHistory" element={<RideHistory />} />
                 <Route path="/StationTimetable" element={<StationTimetable />} /> 
                 <Route path="/UserTicketHistory" element={<UserTicketHistory />} /> 
